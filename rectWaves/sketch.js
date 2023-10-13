@@ -15,7 +15,7 @@ function setup() {
   sound.amp(0.3);
 
   colorMode(RGB);
-  frameRate(25);
+  frameRate(60);
 }
 
 function togglePlay() {
@@ -71,7 +71,7 @@ function createRectangleWave(step) {
   colorMode(HSB, 360, 100, 100); // Switch to HSB mode
   let hueValue = random(360); // Any hue from 0 to 360
   let saturationValue = random(100); // Low to medium saturation for pastel feel
-  let brightnessValue = random(100); // High brightness for pastel feel
+  let brightnessValue = random(80,100); // High brightness for pastel feel
   let waveColor = color(hueValue, saturationValue, brightnessValue);
 
   colorMode(RGB, 255); // Switch back to RGB mode>
