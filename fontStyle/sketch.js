@@ -7,7 +7,6 @@ let camo_picture;
 function preload() {
   font = loadFont('assets/Anyk.ttf');
   armyfont = loadFont('assets/armyrust.ttf');
-  camo_picture = loadImage('assets/camopastel.jpeg');
 }
 
 function setup() {
