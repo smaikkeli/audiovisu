@@ -1,65 +1,100 @@
-let rectSets = [];
-let yoff = 0.0
+let shapeSets = [];
 let sizeoff = 0.0;
 let bassTrigger = true;
-
-function preload() {
-  sound = loadSound('assets/brkdp.mp3');
-}
 
 function setup() {
   //play the sound if mouse button clicked on the canva
   cnv = createCanvas(400, 400);
-  cnv.mouseClicked(togglePlay);
-  fft = new p5.FFT();
-  sound.amp(0.3);
-
   colorMode(RGB);
   frameRate(60);
 }
 
-function togglePlay() {
-  if (sound.isPlaying()) {
-    sound.pause();
-  } else {
-    sound.loop();
-  }
-}
+
 
 function draw() {
   background(30);
   
   //Randomly make a new wave
-  if (random() < 0.1) {
-    rectSets.push(createRectangleWave(random(1,5)));
+  if (random() < 0.5) {
+    shapeSets.push(createEllipseWave(random(5,10)));
   }
   
-  for (let wave of rectSets) {
+  for (let wave of shapeSets) {
     let waveStroke = random(0,100);
     for (let i = 0; i < wave.length; i++) {
-      let r = wave[i];
-      fill(r.color.levels[0], r.color.levels[1], r.color.levels[2], r.a);
-      if (r.appearing) {
-        if (r.a == 0) {
-          r.a += random() < 0.2 ? 1 : 0;
+      let e = wave[i];
+      stroke(e.color.levels[0], e.color.levels[1], e.color.levels[2], e.a);
+      noFill();
+      if (e.appearing) {
+        if (e.a == 0) {
+          e.a += random() < 0.2 ? 1 : 0;
           continue;
         }
-        rect(r.x, r.y, r.size, r.size);
-        //addShine(r.x, r.y, r.size, r.size);
-        stroke(waveStroke);
+        //rect(r.x, r.y, r.size, r.size);
+        ellipse(e.x, e.y, e.width, 50);
+        //addShine(e.x, e.y, e.size, e.size);
+
         wave[i].a = wave[i].a  + 10;
         if (wave[i].a >= 255) {
           wave[i].appearing = false;
         }
       } else {
         wave[i].a -= random(5,20); 
-        if (wave[i].a < 2 | rectSets.length > 3) {
+        if (wave[i].a < 2 | shapeSets.length > 3) {
           // Remove the rectangle when alpha is very low
           wave.splice(i, 1);// Add the rectangle to be removed
       }
       }
     }
   }
+}
+
+// Generates a perlin noise wave of ellipses
+// Param int step: x distance in pixels between subsequent ellipses
+function createEllipseWave(step) {
+  let ellipses = [];
+
+  // Generate a pastel color
+  colorMode(HSB, 360, 100, 100); // Switch to HSB mode
+  let hueValue = random(360); // Any hue from 0 to 360
+  let saturationValue = random(100); // Low to medium saturation for pastel feel
+  let brightnessValue = random(30,60); // High brightness for pastel feel
+  let waveColor = color(hueValue, saturationValue, brightnessValue);
+
+  colorMode(RGB, 255); // Switch back to RGB mode
+
+  // Go through the wave
+  let yoff = random(-height/4, 5*height/4);
+  let widthoff = random(0, 1000); // separate offset for width variation
+  for (let x = 0; x < width; x += step) {
+    // Change the strength of the waves
+    yoff += 0.02;
+    // Change size of the ellipses
+    sizeoff += 0.1;
+
+    widthoff += 10;
+    
+    // Calculate the new y value
+    let y = noise(yoff) * height;
+    
+    // Calculate the new ellipse size
+    let ellipseHeight = noise(sizeoff) * 50;
+
+    let ellipseWidth = noise(widthoff) * 50;
+    
+    // Push the current ellipse
+    ellipses.push({
+      x: x,
+      y: y,
+      width: ellipseWidth,
+      height: ellipseHeight,
+      a: 0, // Angle for potential future use (e.g., rotation)
+      appearing: true,
+      color: waveColor
+    });
+  }
+  
+  return ellipses;
 }
 
 //Generates a perlin noise wave of rectangles
