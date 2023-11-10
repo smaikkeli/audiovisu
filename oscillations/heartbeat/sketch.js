@@ -1,5 +1,5 @@
 let heartPoints = [];
-const RESOLUTION = 0.07;
+const RESOLUTION = 0.1;
 let startColor, endColor, midColor;
 
 function setup() {
@@ -14,6 +14,7 @@ function setup() {
 
 let heartScales = [8, 5, 2];
 
+//Calculate the points of a heart shape using the parametric equation
 function computeHeartPoints(scale) {
   let points = [];
   for (let t = 0; t < TWO_PI; t += RESOLUTION) {
@@ -24,6 +25,7 @@ function computeHeartPoints(scale) {
   return points;
 }
 
+//Find the nearest point that lies on a heart shape
 function distanceToNearestHeart(x, y, allHeartPoints) {
   let minDist = Infinity;
   for (let heartPoints of allHeartPoints) {
@@ -40,13 +42,13 @@ function distanceToNearestHeart(x, y, allHeartPoints) {
 function draw() {
   background(0);
   translate(width/2, height/2); 
-  strokeWeight(3);
+  strokeWeight(0);
 
-  let spacing = 6;
+  let spacing = 7;
   let allHeartPoints = [];  // This will store points for all hearts
 
   for (let i = 0; i < heartScales.length; i++) {
-    let beat = 0.2 * sin(frameCount * 0.2);
+    let beat = 0.1 * sin(frameCount * 0.1);
     heartScales[i] += beat / (i + 1); // Different hearts have different beat magnitudes.
     allHeartPoints.push(computeHeartPoints(heartScales[i]));
   }
@@ -57,7 +59,7 @@ function draw() {
   for (let x = -width/2; x < width/2; x += spacing) {
     for (let y = -height/2; y < height/2; y += spacing) {
       let minDist = distanceToNearestHeart(x, y+25, allHeartPoints);
-      let size = constrain(map(minDist, 0, 25, 25, 5), 7, spacing);
+      let size = constrain(map(minDist, 0, 25, 25, 5), 1, 4);
       let col = lerpColor(currentHeartColor, endColor, map(minDist, 0, 25, 0, 1));
       fill(col);
       ellipse(x, y, size);

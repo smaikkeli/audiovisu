@@ -29,7 +29,7 @@ function draw() {
   }
 
   if (frameCount % 10 == 0) {
-    //Copy random rectangly from the screen to another part of the canvas
+    //Copy random rectangle from the screen to another part of the canvas
     let x1 = random(width+10);
     let y1 = random(height+10);
     let x2 = random(width)+10;
@@ -39,11 +39,13 @@ function draw() {
     glitches.push({'copy': [x1, y1, x2, y2, w, h], 'frames': random(10,100)});
   }
 
+  //Draw the copied rectangles
   for (let i = glitches.length - 1; i >= 0; i--) {
     let g = glitches[i];
     if (g.frames > 0) {
       copy(g.copy[0], g.copy[1], g.copy[4], g.copy[5], g.copy[2], g.copy[3], g.copy[4], g.copy[5]);
       g.frames--;
+    //Remove the rectangle from the array when it's done
     } else {
       glitches.splice(i, 1);
     }
