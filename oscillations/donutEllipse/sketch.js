@@ -14,6 +14,15 @@ function setup() {
   colorMode(HSB);
   startNewDonut();
   frameRate(35);
+  noLoop(); // Stop the draw loop initially
+}
+
+function mousePressed() {
+  if (isLooping()) {
+    noLoop();
+  } else {
+    loop();
+  }
 }
 
 function draw() {

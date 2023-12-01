@@ -11,6 +11,15 @@ function setup() {
   midColor = color(180, 50, 40);       // Red
   endColor = color(50, 0, 100);        // Dark Red
 
+  noLoop(); // Stop the draw loop initially
+}
+
+function mousePressed() {
+  if (isLooping()) {
+    noLoop();
+  } else {
+    loop();
+  }
 }
 
 let heartScales = [5, 3, 1];

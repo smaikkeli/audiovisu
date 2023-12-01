@@ -1,6 +1,15 @@
 function setup() {
   createCanvas(300,300);
   frameRate(30);
+  noLoop(); // Stop the draw loop initially
+}
+
+function mousePressed() {
+  if (isLooping()) {
+    noLoop();
+  } else {
+    loop();
+  }
 }
 
 let waterDrops = [];

@@ -5,6 +5,15 @@ function setup() {
   //Choose color randomly from a list
   stroke(70);
   n = random(65,80)
+  noLoop(); // Stop the draw loop initially
+}
+
+function mousePressed() {
+  if (isLooping()) {
+    noLoop();
+  } else {
+    loop();
+  }
 }
 
 let glitches = [];
