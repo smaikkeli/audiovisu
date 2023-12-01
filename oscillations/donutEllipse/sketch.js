@@ -17,7 +17,7 @@ function setup() {
 }
 
 function draw() {
-  background(25);
+  background(20);
   translate(width / 2, height / 2);
 
   // Calculate wobble effect
@@ -86,9 +86,9 @@ function startNewDonut() {
   noiseIncrement = random(0.01, 0.04);
   radiusScale = random(20,100);
   //Choose angle step based on a probability distributrion with high density on lower values and lower density on higher values
-  angleStep = random([0.01, 0.01, 0.01, 0.02, 0.02, 0.05, , 0.05, 0.1, 0.2, 1]);
+  angleStep = random([0.02, 0.02, 0.05, 0.05, 0.08, 0.1, 0.2, 1]);
 
-  strokeWeight(random([0.1, 0.2, 0.6, 1, 2]));
+  strokeWeight(random([0.4, 0.5, 0.6, 1, 2]));
   startHue = random(360); // Starting hue
   endHue = (startHue + random(60, 180)) % 360; // Ending hue within a range of 60 to 180 degrees from the start hue
   noiseOffset = random(1000); // Reset noiseOffset for variety

@@ -7,7 +7,7 @@ function setup() {
 let glitches = [];
 
 function draw() {
-  background(50,255,100); //green
+  background(200); //green
   //background(230);
 
   let t = frameCount / 100;
