@@ -1,12 +1,13 @@
 ## WARNING: when playing the sketches, remember to pause before continuing or else your computer might get really slow
+## The animations may not work on mobile
 
 # Final Assignment: oscillations
 
 ## Introduction
 
-Oscillations is a creative coding project, which is an exploration of oscillations and periodic movement through mathematics and programming. The aim of the project is to visualize oscillating movement; movement that repeats itself. The works explore the notion of distance and trigonometry through a function of time. It consists of 4 personally chosen sketches that I have made during the course. They are continuous animations, and exhibit generative art elements and randomness in different ways; using perlin noise to provide continuous change over time, or just updating parameters each time the sketch is reloaded, adding a surprise element to each iteration. As there are a lot variables I could've added randomness to, I decided to only vary a subset of possible changeable variables in order to ensure aesthetic appeal.
+"Oscillations" is a creative coding project, which is an exploration of oscillations and periodic movement through mathematics and programming. The aim of the project is to visualize oscillating movement; movement that repeats itself, in an aesthetically pleasing way. The works explore the notion of distance and trigonometry through a function of time. It consists of 4 personally chosen sketches that I have made during the course. They are continuous animations, and exhibit generative art elements and randomness in different ways; using perlin noise to provide continuous change over time, or just updating parameters each time the sketch is reloaded, adding a surprise element to each iteration. As there are a lot variables I could've added randomness to, I decided to only vary a subset of possible changeable variables in order to ensure a certain level of visual appeal.
 
-Each of the sketches are made in p5.js, a creative coding Javascript library, which provides handy functions for drawing shapes and an animation loop. The github repository contains all rest of my sketches, and the easiest way is to run them is by using Visual Studio Code Live Server Extension, and "going live" at the root directory of the p5.js project.
+Each of the sketches are made in p5.js, a creative coding Javascript library, which provides handy functions for drawing shapes and an animation loop. The github repository contains all rest of my sketches, and the easiest way is to run them is by using Visual Studio Code, Live Server Extension, and "going live" at the root directory of the p5.js project.
 
 [How to run each sketch from the repo](https://github.com/processing/p5.js/wiki/Local-server)
 
@@ -14,7 +15,7 @@ This project also serves as my introduction to creative coding. I had basically 
 
 # The works
 
-For each of the works, I will explain the main programming concepts and provide short code snippets in addition to the sketch itself. You can play the works by pressing left click on the canvas
+For each of the works, I will explain the main programming concepts and provide short code snippets in addition to the sketch itself. You can play the sketches by pressing left click on the canvas.
 
 ### Sinusoid
 
@@ -43,7 +44,7 @@ Choosing a different number of points results in a different animation. The beau
 
 <iframe src = "./oscillations/heartbeat/index.html" width = "505" height = "505"></iframe>
 
-The heartbeat consists of three pulsing hearts on a grid of points. The hearts are drawn by a parametric equation, which change size over time. The grid points change their color and size as they get closer to these hearts. The distance to the nearest heart can be calculated by finding the nearest point over all the computed heart points. Below are the main functions to achieve this:
+The heartbeat consists of three pulsing hearts on a grid of points. The hearts are drawn by a parametric equation, which changes magnitude over time. The grid points change their color and size as they get closer to these hearts. The distance to the nearest heart can be calculated by finding the nearest point over all the computed heart points. Below are the main functions to achieve this:
 
 ```javascript
 //Calculate the points of a heart shape using the parametric equation
@@ -76,7 +77,7 @@ function distanceToNearestHeart(x, y, allHeartPoints) {
 
 <iframe src = "./oscillations/donutEllipse/index.html" width = "505px" height = "505px"></iframe>
 
-Slinky donut is a continuously generating distorted ellipse of distorted ellipses, which looks like a slinky, or a donut as my friend said (a rare iteration). It could be a nice screensaver. It basically calculates a radial angle over varying step size, and draws an ellipse which width is determined by perlin noise, to create a continuously changing radial shape. Each time the donut finishes a revolution, it backtracks itself, and generates a new one with semi-randomly chosen parameters. The distortion effect is also achieved by drawing the ellipse with vertices, that have a perlin noise distortion offset. Below is the code for calculating a single ellipse in the ring:
+Slinky donut is a continuously generating distorted ellipse of distorted ellipses, which looks like a slinky, or a donut as my friend said (a rare iteration). It could be a nice screensaver. It basically calculates a radial angle over varying step size, and draws an ellipse which width is determined by perlin noise, to create a continuously changing radial shape. Each time the donut finishes a revolution, it backtracks itself, and generates a new one with semi-randomly chosen parameters. The distortion effect on single ellipses is achieved by drawing the ellipse with individual vertices, that have a perlin noise distortion offset. Below is the code for calculating a single ellipse in the ring:
 
 ```javascript
 let noiseValue = noise(noiseOffset) * radiusScale;
@@ -101,7 +102,7 @@ noiseOffset += noiseIncrement; // Increment noise offset
 
 <iframe src = "./oscillations/waterdrops/index.html" width = "505px" height = "505px"></iframe>
 
-Watedrops depicts a drizzly sea, where each drop of water spreads a wave on sea. There are multiple levels of trigonometry here, starting from the waving grid, to combined waves by each of the waterdrops. The grid is tilted and scaled to create perspective, as if a human was watching it. Each drop is their own object, with assigned class. The drops wall randomly, but not too frequently to crash my computer. This work serves as my final work for the course, and presents most of the previously learned skills. Unlike the previous sketches, this idea was not inspired by some other work, but full OC. Below is the code for waterdrop class.
+Watedrops depicts a drizzly sea, where each drop of water spreads a wave on the sea surface. There are multiple levels of trigonometry here, starting from the waving grid, to combined waves by each of the waterdrops. The grid is tilted and scaled to create perspective, as if a human was watching it. Each drop is their own class object. The drops wall randomly, but not too frequently to crash my computer. This sketch serves as my final work for the course, and presents most of the previously learned skills. Unlike the previous sketches, this idea was not inspired by some other work, but full OC. Below is the code for waterdrop class.
 
 ```javascript
 class WaterDrop {
@@ -151,7 +152,9 @@ class WaterDrop {
 
 # Self reflection
 
-This course has been a welcomed breath of fresh air. Creating generative art is for me, a completely new perspective on coding, and not helped me clarify a lot of mathematical and algorithmic concepts, but also pursue my artistic skills. I have tried to get myself doing creative coding multiple times before, but have not just been able to. This course forced me to learn concepts and actually make the code myself, instead of looking at other peoples works on instagram and thinking "yeah I know how to do that".
+This course has been a welcomed breath of fresh air. Creating generative art is for me, a completely new perspective on coding, and has helped me clarify a many athematical and algorithmic concepts, but also pursue my artistic skills. I have tried to get myself doing creative coding multiple times before, but have not just been able to. This course forced me to learn concepts and actually make the code myself, instead of looking at other peoples works on instagram and thinking "yeah I know how to do that".
 
-Since my previous knowledge on data structures, algorithms, and programming paradigms, I was able to immediately jump into making the sketches. I also found ChatGPT to be really good in helping me get started with a lot of the projects, and teaching how to calculate distance a set of points laying on a parametric equation.
+Due to my previous knowledge on data structures, algorithms, and programming paradigms, I was able to immediately jump into making the sketches. I also found ChatGPT to be really good in helping me get started with a lot of the projects, and teaching how to calculate distance a set of points laying on a parametric equation.
+
+Check out rest of the sketches I did on the github page.
 

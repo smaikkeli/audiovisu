@@ -4,7 +4,7 @@ function setup() {
   noLoop(); // Stop the draw loop initially
 }
 
-function mousePressed() {
+function touchStarted() {
   if (isLooping()) {
     noLoop();
   } else {
@@ -26,7 +26,7 @@ function draw() {
   let maxDepth = height;
   let maxSize = 7;
   let minSize = 2;
-  let maxSpacing = 13;
+  let maxSpacing = 12;
   let minSpacing = 7;
 
   //Set really vintage off white stroke color

@@ -17,7 +17,7 @@ function setup() {
   noLoop(); // Stop the draw loop initially
 }
 
-function mousePressed() {
+function touchStarted() {
   if (isLooping()) {
     noLoop();
   } else {
