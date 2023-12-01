@@ -18,7 +18,7 @@ For each of the works, I will explain the main programming concepts and provide 
 
 ### Sinusoid
 
-<iframe src = "./oscillations/sinusoid/index.html" width = 600 height = 600><\iframe>
+<iframe src = "./oscillations/sinusoid/index.html" width = 600 height = 600></iframe>
 
 To get a new pattern, refresh the page
 
@@ -41,7 +41,7 @@ Choosing a different number of points results in a different animation. The beau
 
 ### Hearbeat
 
-<iframe src = "./oscillations/heartbeat/index.html" width = "550" height = "550"><\iframe>
+<iframe src = "./oscillations/heartbeat/index.html" width = "550" height = "550"></iframe>
 
 The heartbeat consists of three pulsing hearts on a grid of points. The hearts are drawn by a parametric equation, which change size over time. The grid points change their color and size as they get closer to these hearts. The distance to the nearest heart can be calculated by finding the nearest point over all the computed heart points. Below are the main functions to achieve this:
 
@@ -74,7 +74,7 @@ function distanceToNearestHeart(x, y, allHeartPoints) {
 
 ### Slinky donut
 
-<iframe src = "./oscillations/donutEllipse/index.html" width = "500px" height = "auto"><\iframe>
+<iframe src = "./oscillations/donutEllipse/index.html" width = "500px" height = "auto"></iframe>
 
 Slinky donut is a continuously generating distorted ellipse of distorted ellipses, which looks like a slinky, or a donut as my friend said (a rare iteration). It could be a nice screensaver. It basically calculates a radial angle over varying step size, and draws an ellipse which width is determined by perlin noise, to create a continuously changing radial shape. Each time the donut finishes a revolution, it backtracks itself, and generates a new one with semi-randomly chosen parameters. The distortion effect is also achieved by drawing the ellipse with vertices, that have a perlin noise distortion offset. Below is the code for calculating a single ellipse in the ring:
 
@@ -99,7 +99,7 @@ noiseOffset += noiseIncrement; // Increment noise offset
 
 ### Waterdrops
 
-<iframe src = "./oscillations/waterdrops/index.html" width = "500px" height = "500px"><\iframe>
+<iframe src = "./oscillations/waterdrops/index.html" width = "500px" height = "500px"></iframe>
 
 Watedrops depicts a drizzly sea, where each drop of water spreads a wave on sea. There are multiple levels of trigonometry here, starting from the waving grid, to combined waves by each of the waterdrops. The grid is tilted and scaled to create perspective, as if a human was watching it. Each drop is their own object, with assigned class. The drops wall randomly, but not too frequently to crash my computer. This work serves as my final work for the course, and presents most of the previously learned skills. Unlike the previous sketches, this idea was not inspired by some other work, but full OC. Below is the code for waterdrop class.
 
