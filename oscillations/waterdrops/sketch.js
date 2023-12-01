@@ -8,7 +8,7 @@ let gridSize = 5; // Distance between grid points
 
 function draw() {
   //Sea blue background
-  background(0, 150, 255);
+  background(0, 80, 230);
 
   let waveAmplitude = 5; // Amplitude of the wave
   let waveFrequency = 0.1; // Frequency of the wave
@@ -37,6 +37,7 @@ function draw() {
     }
     drop.update();
     if (drop.isOffScreen()) {
+      console.log("removing drop");
       waterDrops.splice(i, 1);
     }
   }
@@ -57,15 +58,14 @@ function draw() {
           let d = dist(x, y, drop.x, drop.y);
 
           let effect = drop.radius - abs(drop.radius - d)*drop.effectStrength;
-          y_offset = max(y_offset, effect*0.03);
+          y_offset = max(y_offset, effect*0.04);
           //choose max size from all drops
           size = max(size, map(effect, 0, drop.radius, pointSize, pointSize*1.7, true));
         }
-        drawPoint(waveX, waveY + y_offset, size);
-
       } if (waterDrops.length === 0) {
         drawPoint(waveX + y_offset, waveY + y_offset, size);
       }
+      drawPoint(waveX, waveY - y_offset, size);
     }
   }
 }
@@ -83,11 +83,11 @@ class WaterDrop {
     this.targetY = targetY;
     this.radius = 0;
     this.falling = true; // Initial state is falling
-    this.growthRate = random(1, 4);
-    this.effectStrength = random(2,5);
+    this.growthRate = random(1,4);
+    this.effectStrength = random(1,3);
     this.lifetime = 0;
 
-    this.fallSpeed = random(1,4); // Speed of the falling drop
+    this.fallSpeed = random(2,4); // Speed of the falling drop
     this.angle = 0;
   }
 
@@ -107,7 +107,6 @@ class WaterDrop {
   }
 
   displayDrop() {
-    console.log("displaying drop");
     let spiralX = this.x + sin(this.angle)*2;
     this.angle += 0.5;
     stroke(255,220,215);
@@ -117,54 +116,11 @@ class WaterDrop {
   }
 
   isOffScreen() {
-    return this.lifetime > 500;
+    return this.lifetime > 300;
   }
 }
 
-function periodic(p) {
-  return map(sin(TWO_PI * p), -1, 1, random(4,5), random(7,9));
-}
 
-function offsetMiddle(x, y) {
-  return dist(x, y, width/2, height/2) / 100;
-}
-
-function offsetRandomPoint(x, y) {
-  return dist(x, y, random(width), random(height)) / 100;
-}
-
-function offsetVar(x,y ,ox,oy) {
-  return dist(x,y, ox, oy) / 100;
-}
-
-function keyPressed() {
-  if (key == 's' || key == 'S') saveGif('radialWave', 5);
-}
-
-function glitch() {
-  if (frameCount % 10 == 0) {
-    //Copy random rectangle from the screen to another part of the canvas
-    let x1 = random(width+10);
-    let y1 = random(height+10);
-    let x2 = random(width)+10;
-    let y2 = random(height+10);
-    let w = random(10, 50);
-    let h = random(10, 50);
-    glitches.push({'copy': [x1, y1, x2, y2, w, h], 'frames': random(10,100)});
-  }
-
-  //Draw the copied rectangles
-  for (let i = glitches.length - 1; i >= 0; i--) {
-    let g = glitches[i];
-    if (g.frames > 0) {
-      copy(g.copy[0], g.copy[1], g.copy[4], g.copy[5], g.copy[2], g.copy[3], g.copy[4], g.copy[5]);
-      g.frames--;
-    //Remove the rectangle from the array when it's done
-    } else {
-      glitches.splice(i, 1);
-    }
-  }
-}
 
 //Best functions for size:
 /*

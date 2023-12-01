@@ -16,7 +16,7 @@ function draw() {
   
   //Randomly make a new wave
   if (random() < 0.5) {
-    shapeSets.push(createEllipseWave(random(5,10)));
+    shapeSets.push(createRectangleWave(random(5,10)));
   }
   
   for (let wave of shapeSets) {
@@ -24,15 +24,15 @@ function draw() {
     for (let i = 0; i < wave.length; i++) {
       let e = wave[i];
       stroke(e.color.levels[0], e.color.levels[1], e.color.levels[2], e.a);
-      noFill();
+      //noFill();
       if (e.appearing) {
         if (e.a == 0) {
           e.a += random() < 0.2 ? 1 : 0;
           continue;
         }
-        //rect(r.x, r.y, r.size, r.size);
-        ellipse(e.x, e.y, e.width, 50);
-        //addShine(e.x, e.y, e.size, e.size);
+        rect(e.x, e.y, e.size, e.size);
+        //ellipse(e.x, e.y, e.width, 50);
+        addShine(e.x, e.y, e.size, e.size);
 
         wave[i].a = wave[i].a  + 10;
         if (wave[i].a >= 255) {
@@ -47,6 +47,7 @@ function draw() {
       }
     }
   }
+  //filter(POSTERIZE, 3)
 }
 
 // Generates a perlin noise wave of ellipses

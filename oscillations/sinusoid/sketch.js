@@ -1,21 +1,20 @@
+//Main idea: https://www.openprocessing.org/sketch/101691
+
 
 function setup() {
-  createCanvas(200, 200);
-
+  createCanvas(200,200);
+  //Choose color randomly from a list
+  stroke(70);
 }
 
 let glitches = [];
 
 function draw() {
-  background(200); //green
+  background(50, 200, 82); //green
   //background(230);
 
   let t = frameCount / 100;
-  let n = 60 + noise(t);
-
-  stroke(100); //Gray
-  //stroke(255,140,150); //Pink
-  //stroke(30,10,10); //Dark red
+  let n = 60;
 
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++){
@@ -23,6 +22,7 @@ function draw() {
       y = map(j, 0, n - 1, 0, height);
 
       let size = periodic(t - offsetMiddle(x, y))*sin(dist(x, y, width/2, height/2));
+      //let size = periodic(t - offsetMiddle(x,y))*sin(dist(x, cos(y), width/2, height/2));
       strokeWeight(size);
       point(x,y);
     }

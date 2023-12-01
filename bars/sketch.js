@@ -4,22 +4,22 @@ let padding = 8;
 let colorIndex = 0;
 let wrect;
 let bpm;
+let sound;
 
 function preload() {
-  img = loadImage('assets/karsee.png');
-  sound = loadSound('assets/brkdp.mp3');
+  sound = loadSound('./assets/brkdp.mp3');
 }
+
 
 function setup() {
   frameRate(60);
   let cnv = createCanvas(600,600);
   cnv.mouseClicked(togglePlay);
   fft = new p5.FFT();
+  //let sound = loadSound('./assets/brkdp.mp3');
   sound.amp(0.3);
-  //bpm = sound.getBPM();
   colorMode(HSB);
   colorStart = random(360)
-  image(img, 0 ,0)
   wrect = random(5,15);
   background(200, 20, 20);
   addShine(width/4, height/4, 400, 300, 80);
@@ -72,17 +72,18 @@ function draw() {
     stroke(0);
     //fill(n*100 + currentColor, 40, 40, 10);
     //Draw a rectangle at each position spanning the screen
-    rect(width/2 - x - 10, height/2, width / spectrum.length * wrect, h/4);
-    addShine(width/2 - x - 10, height/2, width / spectrum.length * wrect, h/4);
+    rect(width/2 - x - 10 - wrect/2, height/2, width / spectrum.length * wrect, h/4);
+    addShine(width/2 - x - 10 - wrect/2, height/2, width / spectrum.length * wrect, h/4);
     //Make another similar rectangle which is flipped vertically
-    rect(width/2 - x - 10, height/2, width / spectrum.length * wrect, -h/4);
+    rect(width/2 - x - 10 - wrect/2, height/2, width / spectrum.length * wrect, -h/4);
     //addShine(width/2 - x - 10, height/2, width / spectrum.length * wrect, -h/4);
   }
 
   offset += 0.025;
 
-  if (frameCount % 120 == 0) {
-    wrect = random(5,15)
+  /*
+  if (frameCount % 60 == 0) {
+    wrect = random(10,16)
     background(200, 20, 20);
     addShine(width/4, height/4, 400, 300, 80);
     circle(width/2, height/2, 100);
@@ -90,7 +91,7 @@ function draw() {
     line(width/4, 3*height/4, width/4 + 200, height/4);
     line(width/4, 3*height/4, 0, height/4);
     newColor();
-  }
+  }*/
 }
 
 function newColor() {

@@ -11,10 +11,11 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  background(20);
 
-  t += 0.01;
-  stroke(255);
+  t += 0.005;
+  //stroke pink
+  stroke(255, 0, 255);
 
   for (let theta = 0; theta < TWO_PI; theta += 0.2) {
     //Create a vector of size (width, y)
