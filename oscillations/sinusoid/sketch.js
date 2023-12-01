@@ -1,10 +1,10 @@
-//Main idea: https://www.openprocessing.org/sketch/101691
-
+let n;
 
 function setup() {
-  createCanvas(200,200);
+  createCanvas(500,500);
   //Choose color randomly from a list
   stroke(70);
+  n = random(65,80)
 }
 
 let glitches = [];
@@ -13,15 +13,14 @@ function draw() {
   background(50, 200, 82); //green
   //background(230);
 
-  let t = frameCount / 100;
-  let n = 60;
+  let t = frameCount / 50;
 
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++){
       x = map(i, 0, n - 1, 0, width);
       y = map(j, 0, n - 1, 0, height);
 
-      let size = periodic(t - offsetMiddle(x, y))*sin(dist(x, y, width/2, height/2));
+      let size = periodic(t - (offsetMiddle(x, y)))*sin(dist(x, y, width/2, height/2));
       //let size = periodic(t - offsetMiddle(x,y))*sin(dist(x, cos(y), width/2, height/2));
       strokeWeight(size);
       point(x,y);
@@ -30,12 +29,12 @@ function draw() {
 
   if (frameCount % 10 == 0) {
     //Copy random rectangle from the screen to another part of the canvas
-    let x1 = random(width+10);
-    let y1 = random(height+10);
-    let x2 = random(width)+10;
-    let y2 = random(height+10);
-    let w = random(10, 50);
-    let h = random(10, 50);
+    let x1 = random(width+25);
+    let y1 = random(height+25);
+    let x2 = random(width)+25;
+    let y2 = random(height+25);
+    let w = random(25, 120);
+    let h = random(25, 120);
     glitches.push({'copy': [x1, y1, x2, y2, w, h], 'frames': random(10,100)});
   }
 
@@ -53,7 +52,7 @@ function draw() {
 }
 
 function periodic(p) {
-  return map(sin(TWO_PI * p), -1, 1, random(4,5), random(7,9));
+  return map(sin(TWO_PI * p), -1, 1, random(10,12), random(20,22));
 }
 
 function offsetMiddle(x, y) {
