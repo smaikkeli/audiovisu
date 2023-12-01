@@ -9,7 +9,7 @@ let noiseIncrement = 0.02;
 let angleStep = 0.02;
 
 function setup() {
-  createCanvas(800,800);
+  createCanvas(500,500);
   noFill();
   colorMode(HSB);
   startNewDonut();
@@ -40,7 +40,7 @@ function draw() {
   rotate(wobbleRotation);
   
 
-  let donutRadius = 150; // The overall radius of the donut
+  let donutRadius = 100; // The overall radius of the donut
   let baseEllipseRadius = 10; // The base radius of each individual ellipse
 
   if (!removing) {

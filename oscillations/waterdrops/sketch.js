@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(300,300);
+  createCanvas(500,500);
   frameRate(30);
   noLoop(); // Stop the draw loop initially
 }
@@ -13,7 +13,6 @@ function mousePressed() {
 }
 
 let waterDrops = [];
-let gridSize = 5; // Distance between grid points
 
 function draw() {
   //Sea blue background
@@ -25,10 +24,10 @@ function draw() {
 
   let gridStartY = height / 4;
   let maxDepth = height;
-  let maxSize = 4;
-  let minSize = 0.5;
-  let maxSpacing = 8;
-  let minSpacing = 2;
+  let maxSize = 7;
+  let minSize = 2;
+  let maxSpacing = 13;
+  let minSpacing = 7;
 
   //Set really vintage off white stroke color
   stroke(255,220,215);
@@ -54,9 +53,9 @@ function draw() {
   for (let y = gridStartY; y <= maxDepth + 20; y += lerp(minSpacing, maxSpacing, y/maxDepth)) {
     let pointSize = lerp(minSize, maxSize, y / maxDepth);
     for (let x = 0-50; x <= width + 50; x += lerp(minSpacing, maxSpacing, y / maxDepth)) {
-      waveAmplitude = lerp(3, 6, y / maxDepth);
-      let waveX = x + sin(frameCount * waveSpeed + y * waveFrequency) * waveAmplitude;
-      let waveY = y + sin(frameCount * waveSpeed + x * waveFrequency) * waveAmplitude;
+      waveAmplitude = lerp(6, 9, y / maxDepth);
+      let waveX = x + sin((frameCount * waveSpeed + y * waveFrequency)/1.7) * waveAmplitude;
+      let waveY = y + sin((frameCount * waveSpeed + x * waveFrequency)/1.7) * waveAmplitude;
 
       let size = pointSize;
       let y_offset = 0; // Default offset
@@ -67,7 +66,7 @@ function draw() {
           let d = dist(x, y, drop.x, drop.y);
 
           let effect = drop.radius - abs(drop.radius - d)*drop.effectStrength;
-          y_offset = max(y_offset, effect*0.04);
+          y_offset = max(y_offset, effect*0.03);
           //choose max size from all drops
           size = max(size, map(effect, 0, drop.radius, pointSize, pointSize*1.7, true));
         }
@@ -92,8 +91,8 @@ class WaterDrop {
     this.targetY = targetY;
     this.radius = 0;
     this.falling = true; // Initial state is falling
-    this.growthRate = random(1,4);
-    this.effectStrength = random(1,3);
+    this.growthRate = random(3,6);
+    this.effectStrength = random(3,5);
     this.lifetime = 0;
 
     this.fallSpeed = random(2,4); // Speed of the falling drop

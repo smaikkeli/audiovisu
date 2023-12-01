@@ -3,7 +3,7 @@ const RESOLUTION = 0.1;
 let startColor, endColor, midColor;
 
 function setup() {
-  createCanvas(400,400);
+  createCanvas(500,500);
   background(220);
   frameRate(30); // Adjust this for faster or slower heartbeat
   
@@ -22,7 +22,7 @@ function mousePressed() {
   }
 }
 
-let heartScales = [5, 3, 1];
+let heartScales = [7,5,3];
 
 //Calculate the points of a heart shape using the parametric equation
 function computeHeartPoints(scale) {
@@ -54,7 +54,7 @@ function draw() {
   translate(width/2, height/2); 
   strokeWeight(0);
 
-  let spacing = 6;
+  let spacing = 8;
   let allHeartPoints = [];  // This will store points for all hearts
 
   for (let i = 0; i < heartScales.length; i++) {
@@ -70,7 +70,7 @@ function draw() {
     for (let y = -height/2; y < height/2; y += spacing) {
       let minDist = distanceToNearestHeart(x, y+25, allHeartPoints)
       minDist *= map(sin(frameCount * 0.15), -1, 1, 0.8, 2);
-      let size = constrain(map(minDist, 0, 25, 25, 4), 1, 3);
+      let size = constrain(map(minDist, 0, 30, 30, 4), 1.3, 4);
       let col = lerpColor(currentHeartColor, endColor, map(minDist, 0, 30, 0, 1));
       fill(col);
       ellipse(x, y, size);
