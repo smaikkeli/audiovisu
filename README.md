@@ -1,6 +1,5 @@
 **WARNING: when playing the sketches, remember to pause before continuing or else your computer might get really slow**
 
-**The animations may not work on mobile**
 
 # Final Assignment: oscillations
 
@@ -42,6 +41,9 @@ let size = periodic(t - (offsetMiddle(x, y)))*sin(dist(x, y, width/2, height/2))
 Choosing a different number of points results in a different animation. The beauty behind this sketch is its "simplicity" (depends on who you ask), and how one can easily test different ways of calculating the distance to achieve totally different animations. Furthermore, there is a "glitch" effect which copies rectangles of the canvas to other places, creating the illusion.
 
 ### Hearbeat
+
+**Press on the canvas to play the animation**
+**In case it does not work, use Google Chrome**
 
 <iframe src = "./oscillations/heartbeat/index.html" width = "505" height = "505"></iframe>
 
