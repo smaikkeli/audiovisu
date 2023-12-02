@@ -1,5 +1,5 @@
-## WARNING: when playing the sketches, remember to pause before continuing or else your computer might get really slow
-## The animations may not work on mobile
+**WARNING: when playing the sketches, remember to pause before continuing or else your computer might get really slow**
+**The animations may not work on mobile**
 
 # Final Assignment: oscillations
 
