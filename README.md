@@ -1,11 +1,12 @@
 **WARNING: when playing the sketches, remember to pause before continuing or else your computer might get really slow**
+
 **The animations may not work on mobile**
 
 # Final Assignment: oscillations
 
 ## Introduction
 
-"Oscillations" is a creative coding project, which is an exploration of oscillations and periodic movement through mathematics and programming. The aim of the project is to visualize oscillating movement; movement that repeats itself, in an aesthetically pleasing way. The works explore the notion of distance and trigonometry through a function of time. It consists of 4 personally chosen sketches that I have made during the course. They are continuous animations, and exhibit generative art elements and randomness in different ways; using perlin noise to provide continuous change over time, or just updating parameters each time the sketch is reloaded, adding a surprise element to each iteration. As there are a lot variables I could've added randomness to, I decided to only vary a subset of possible changeable variables in order to ensure a certain level of visual appeal.
+"Oscillations" is a creative coding project, which is an exploration of oscillations and periodic movement through mathematics and programming. The aim of the project is to visualize oscillating movement; movement that repeats itself, in an aesthetically pleasing way. The works explore the notion of distance and trigonometry through a function of time. It consists of 4 personally chosen sketches that I have made during the course. They are continuous animations, and exhibit generative art elements and randomness in different ways; using perlin noise to provide continuous change over time, or just changing parameters to produce new patterns, adding a surprise element to each iteration. I decided to only vary a subset of possible changeable variables in order to ensure a certain level of visual appeal.
 
 Each of the sketches are made in p5.js, a creative coding Javascript library, which provides handy functions for drawing shapes and an animation loop. The github repository contains all rest of my sketches, and the easiest way is to run them is by using Visual Studio Code, Live Server Extension, and "going live" at the root directory of the p5.js project.
 
